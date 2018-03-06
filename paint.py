@@ -23,7 +23,10 @@ class Paint:
 
     def changeColor(self):
         color = self.colorEntry.get()
-        self.penColor = color        
+        self.penColor = color
+
+    def saveCanvas(self):
+        self.canvas.postscript(file="python_paint.ps", colormode="color")
 
     def __init__(self):
         self.window = Tk()
@@ -44,6 +47,9 @@ class Paint:
 
         colorBtn = Button(nav, text="Change Color", command=self.changeColor)
         colorBtn.pack(side=LEFT)
+
+        self.saveBtn = Button(nav, text="Save", command=self.saveCanvas)
+        self.saveBtn.pack(side=RIGHT)
 
         self.penColor = 'black'
         self.draw = False
